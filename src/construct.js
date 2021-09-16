@@ -32,7 +32,17 @@ class ReflectionObject {
   setOption(name, value, ifNotSet) {
     /* istanbul ignore next */
     if (!ifNotSet || !this.options || this.options[name] === undefined) {
-      (this.options || (this.options = {}))[name] = value;
+      const prevOptions = this.options || (this.options = {});
+      if (prevOptions[name]) {
+        if (Array.isArray(prevOptions[name])) {
+          prevOptions[name] = [...prevOptions[name], value];
+        } else {
+          prevOptions[name] = [prevOptions[name], value];
+        }
+      } else {
+        prevOptions[name] = value;
+      }
+      this.options = prevOptions;
     }
 
     return this;

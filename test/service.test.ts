@@ -30,6 +30,33 @@ service Example {
     return expect(serviceInfos).to.eql(expected);
   });
 
+  it('should generate service infos with array options', () => {
+    const idl = `
+syntax = 'proto3';
+
+// comment service
+service Example {
+  option (my_service_option) = FOO;
+  option (my_service_option) = BAR;
+}
+    `;
+
+    const expected = {
+      options: { '(my_service_option)': ['FOO', 'BAR'] },
+      name: 'Example',
+      fullName: '.Example',
+      comment: 'comment service',
+      syntaxType: 'ServiceDefinition',
+      methods: {},
+      nested: undefined,
+    };
+
+    const protoDocument = t.parse(idl) as t.ProtoDocument;
+    const serviceInfos = protoDocument.root.nested
+      .Example as t.ServiceDefinition;
+    return expect(serviceInfos).to.eql(expected);
+  });
+
   it('should generate method infos', () => {
     const idl = `
 syntax = 'proto3';
