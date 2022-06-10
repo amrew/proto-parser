@@ -1,4 +1,4 @@
-## [0.0.9](https://github.com/lancewuz/proto-parser/compare/v0.0.6...v0.0.9) (2022-05-24)
+## [0.0.10](https://github.com/lancewuz/proto-parser/compare/v0.0.6...v0.0.10) (2022-06-10)
 
 
 ### Bug Fixes

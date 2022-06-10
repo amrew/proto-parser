@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
-<coverage lines-valid="687" lines-covered="640" line-rate="0.9316" branches-valid="331" branches-covered="310" branch-rate="0.9366" timestamp="1654833782335" complexity="0" version="0.1">
+<coverage lines-valid="687" lines-covered="640" line-rate="0.9316" branches-valid="331" branches-covered="310" branch-rate="0.9366" timestamp="1654833856318" complexity="0" version="0.1">
   <sources>
     <source>/Users/ruangguru/go/src/gitlab.com/ruangguru/proto-parser</source>
   </sources>
