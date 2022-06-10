@@ -122,6 +122,18 @@ function parse(source, opt) {
     return values.join('');
   }
 
+  function readArrayValue() {
+    const values = [];
+    let token;
+    do {
+      token = next();
+      if (token !== '[' && token !== ',' && token !== ']') {
+        values.push(token);
+      }
+    } while (token !== ']');
+    return values;
+  }
+
   function readValue(acceptTypeRef) {
     const token = next();
     switch (token) {
@@ -573,8 +585,13 @@ function parse(source, opt) {
           parseOptionValue(parent, `${name}.${token}`);
         } else {
           skip(':');
-          if (peek() === '{') parseOptionValue(parent, `${name}.${token}`);
-          else setOption(parent, `${name}.${token}`, readValue(true));
+          if (peek() === '{') {
+            parseOptionValue(parent, `${name}.${token}`);
+          } else if (peek() === '[') {
+            setOption(parent, `${name}.${token}`, readArrayValue());
+          } else {
+            setOption(parent, `${name}.${token}`, readValue(true));
+          }
         }
         /* istanbul ignore next */
         skip(',', true);
